@@ -1,16 +1,7 @@
-FROM ubuntu:16.04
-MAINTAINER Anufriev Dmitry
+FROM  node:7.4
 
-RUN apt-get -yqq update
-RUN apt-get -yqq install nodejs npm
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-# RUN apt-get -yqq install yarn
-
-
-ADD ./ /opt/my-project
+ADD . /opt/my-project
 WORKDIR /opt/my-project
+RUN npm install
 
-RUN npm install -g npm
-RUN npm run dev
-
-EXPOSE 8080
+CMD [ "npm", "run", "dev" ]
